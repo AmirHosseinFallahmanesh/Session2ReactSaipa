@@ -1,0 +1,56 @@
+import React from 'react'
+
+export const ProductList2 = () => {
+    const initProducts=[
+    {id:1,Code:'a240',Name:'mobile',Count:360},
+    {id:2,Code:'45bv0',Name:'phone',Count:4}
+]
+
+    const [products,setProduct]= React.useState([...initProducts])
+
+    const removeProduct=(code)=>{
+       
+        const temp=products.filter(a=>a.Code!=code);
+        
+        setProduct([...temp])
+        }
+
+
+    return (
+        <div className="container">
+            <h1>Product List</h1>
+        <div className="row">
+        <table className="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>Code</th>
+                                    <th>name</th>
+                                    <th>count</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {products.map((product, i) =>
+                                    <tr key={product.id}>  
+                                       <td>{product.Code}</td>
+                                        <td>{product.Name}</td>
+                                        <td>{product.Count}</td>
+                                        <td>
+                                            <button onClick={()=>removeProduct(product.Code)}  className="btn btn-danger">
+                                                remove
+                                            </button>
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>            
+            
+        </div>     
+
+
+
+        </div>
+    )
+}
+
+export default ProductList2
