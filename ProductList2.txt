@@ -1,0 +1,53 @@
+import React from 'react'
+import { ProductInfo } from './productInfo'
+
+export const ProductList4 = () => {
+    const initProducts=[{id:1,Code:'a240',Name:'mobile',Count:360},
+    {id:2,Code:'45bv0',Name:'phone',Count:4}]
+    const [products,setProduct]= React.useState([...initProducts])
+
+    const removeProduct=(code)=>{
+     
+        const temp=products.filter(a=>a.Code!=code);
+      
+        setProduct([...temp])
+        }
+
+
+    return (
+        <>
+        <div className="container">
+            <h1>Product List</h1>
+            <div className="row">
+                {
+                    products.map((p) =>
+                    <ProductInfo key={p.id}
+                     product={p} remove={removeProduct}  />
+                                
+                )
+            }
+            </div>               
+        </div>
+    </>
+    )
+}
+
+
+export default ProductList4
+
+//-----------------------------------------
+
+import React from 'react'
+
+export const ProductInfo = ({product,remove}) => {
+    return (
+        <div class="card">
+        <div class="card-header">{product.Code}</div>
+        <div class="card-body">
+            <h5>Name : {product.Name}</h5>
+            <h5>Count : {product.Count}</h5>
+            <button class="btn btn-danger" onClick={()=>remove(product.Code)} >Remove</button>
+        </div>
+         </div>   
+    )
+}
